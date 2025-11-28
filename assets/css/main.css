@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+button {
+  cursor: pointer;
+}
+
+.h2-style {
+  @apply text-2xl;
+}
