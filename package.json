@@ -7,7 +7,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "test": "vitest"
   },
   "dependencies": {
     "@nuxt/eslint": "^1.10.0",
@@ -20,5 +21,14 @@
     "typescript": "^5.9.3",
     "vue": "^3.5.25",
     "vue-router": "^4.6.3"
+  },
+  "devDependencies": {
+    "@testing-library/vue": "^8.1.0",
+    "@types/jest": "^30.0.0",
+    "@vitejs/plugin-vue": "^6.0.2",
+    "@vue/test-utils": "^2.4.6",
+    "jsdom": "^27.2.0",
+    "unplugin-auto-import": "^20.3.0",
+    "vitest": "^4.0.14"
   }
 }
