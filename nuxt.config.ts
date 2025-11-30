@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
-  modules: ["@nuxt/hints", "@nuxt/ui", "@nuxt/eslint", "@pinia/nuxt"],
+  modules: ["@nuxt/hints", "@nuxt/ui", "@nuxt/eslint", "@pinia/nuxt", "@nuxt/test-utils/module"],
   css: ["~/assets/css/main.css"],
   runtimeConfig: {
     public: {
