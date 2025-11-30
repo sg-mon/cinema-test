@@ -15,6 +15,7 @@ import { useCinemaStore } from "~/entities/cinema";
 import { useMovieStore } from "~/entities/movie";
 import { useSessionStore } from "~/entities/session";
 import { SessionSeats } from "~/features/session";
+import { PageHead } from "~/features/layout";
 
 const route = useRoute();
 const sessionId = computed(() => Number(route.params.id));

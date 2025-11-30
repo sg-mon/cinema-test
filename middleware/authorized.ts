@@ -1,9 +1,10 @@
 import { useUserStore } from "~/entities/user";
+import { useConfig } from "~/shared";
 
 export default defineNuxtRouteMiddleware((to) => {
   const userStore = useUserStore();
-  const { $appConfig } = useNuxtApp();
+  const config = useConfig();
   if (!userStore.isAuth) {
-    return navigateTo({ name: $appConfig.unauthorizedRoutesNames[0] });
+    return navigateTo({ name: config.get("unauthorizedRoutesNames")[0] });
   }
 });

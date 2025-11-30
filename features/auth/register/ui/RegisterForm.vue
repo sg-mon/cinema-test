@@ -6,13 +6,23 @@
     @submit="onSave">
     <h2 class="h2-style">Регистрация</h2>
     <u-form-field label="Логин" name="username" class="w-full">
-      <u-input v-model="state.username" class="w-full" size="lg"></u-input>
+      <u-input v-model="state.username" class="w-full" size="lg" placeholder="Логин"></u-input>
     </u-form-field>
     <u-form-field label="Пароль" name="password" class="w-full">
-      <u-input v-model="state.password" type="password" class="w-full" size="lg"></u-input>
+      <u-input
+        v-model="state.password"
+        type="password"
+        class="w-full"
+        size="lg"
+        placeholder="Пароль"></u-input>
     </u-form-field>
     <u-form-field label="Повторите пароль" name="repeatPassword" class="w-full">
-      <u-input v-model="state.repeatPassword" type="password" class="w-full" size="lg"></u-input>
+      <u-input
+        v-model="state.repeatPassword"
+        type="password"
+        class="w-full"
+        size="lg"
+        placeholder="Повторите пароль"></u-input>
     </u-form-field>
     <u-button :loading="userStore.loading.register" type="submit"> Зарегистрироваться </u-button>
     <span>

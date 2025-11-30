@@ -1,9 +1,11 @@
 import { defineStore } from "pinia";
-import { isAPIError, STORES, type APIError } from "~/shared";
+import { isAPIError, STORES, useConfig, type APIError } from "~/shared";
 import { type TUserTAuthFields, useUserAPI } from "~/entities/user";
 
 export const useUserStore = defineStore(STORES.USER, () => {
   const toast = useToast();
+
+  const config = useConfig();
 
   const { authorize, registerUser } = useUserAPI();
 
@@ -63,8 +65,7 @@ export const useUserStore = defineStore(STORES.USER, () => {
   const router = useRouter();
   function logout() {
     accessToken.value = "";
-    const { $appConfig } = useNuxtApp();
-    if ($appConfig.authorizedRoutesNames.includes(String(route.name))) {
+    if (config.get("authorizedRoutesNames").includes(String(route.name))) {
       router.push("/");
     }
   }

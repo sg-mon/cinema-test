@@ -4,8 +4,6 @@ import { useUserStore } from "~/entities/user";
 import { type TLayoutConfig, useLayoutAPI } from "~/features/layout";
 
 export const useLayoutModule = defineStore(STORES.LAYOUT, () => {
-  const toast = useToast();
-
   const userStore = useUserStore();
   const menu = computed(() => [
     {
@@ -28,7 +26,7 @@ export const useLayoutModule = defineStore(STORES.LAYOUT, () => {
     },
   ]);
 
-  const { fetchConfig, fetchLocalConfig } = useLayoutAPI();
+  const { fetchLocalConfig } = useLayoutAPI();
 
   const config = ref<TLayoutConfig>({ bookingPaymentTimeSeconds: 0 });
   async function loadLocalConfig() {

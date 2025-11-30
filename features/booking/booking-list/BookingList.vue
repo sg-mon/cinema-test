@@ -23,7 +23,6 @@
 
 <script setup lang="ts">
 import { useBookingModule } from "~/features/booking";
-import { useLayoutModule } from "~/features/layout";
 import BookingListContent from "./BookingListContent.vue";
 
 const bookingModule = useBookingModule();

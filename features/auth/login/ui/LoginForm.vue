@@ -6,10 +6,15 @@
     @submit="onSave">
     <h2 class="h2-style">Вход</h2>
     <u-form-field label="Логин" name="username" class="w-full">
-      <u-input v-model="state.username" class="w-full" size="lg"></u-input>
+      <u-input v-model="state.username" class="w-full" size="lg" placeholder="Логин"></u-input>
     </u-form-field>
     <u-form-field label="Пароль" name="password" class="w-full">
-      <u-input v-model="state.password" type="password" class="w-full" size="lg"></u-input>
+      <u-input
+        v-model="state.password"
+        type="password"
+        class="w-full"
+        size="lg"
+        placeholder="Пароль"></u-input>
     </u-form-field>
     <u-button :loading="userStore.loading.login" type="submit"> Войти </u-button>
     <span>
@@ -43,7 +48,7 @@ function validate(state: TUserTAuthFields): FormError[] {
   if (!passwordValidator(state.password)) {
     errors.push({
       name: "password",
-      message: "Пароль должен содержать минимум 8 символов, одну цифру и заглавную букву.",
+      message: "Пароль должен содержать минимум 8 символов, цифру и заглавную букву.",
     });
   }
   return errors;

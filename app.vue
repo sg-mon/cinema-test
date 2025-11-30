@@ -13,11 +13,8 @@ import { useConfig, config } from "~/shared";
 const layoutModule = useLayoutModule();
 const { data } = await useAsyncData("config", () =>
   layoutModule.loadLocalConfig().then(async (result) => {
-    useConfig().set({
-      ...config.value,
-      ...result,
-    });
-    return config.value;
+    useConfig().set(result || {});
+    return unref(config);
   }),
 );
 if (import.meta.client && data.value) {

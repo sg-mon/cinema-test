@@ -1,11 +1,13 @@
 import type { NitroFetchRequest, NitroFetchOptions } from "nitropack";
 import { useUserStore } from "~/entities/user";
+import { useConfig } from "~/shared";
 
 export async function apiFetch<T>(
   url: string,
   opts?: NitroFetchOptions<NitroFetchRequest>,
 ): Promise<T> {
   const route = useRoute();
+  const config = useConfig();
 
   try {
     return await $fetch<T>(url, opts);
@@ -14,7 +16,7 @@ export async function apiFetch<T>(
       const userStore = useUserStore();
       userStore.logout();
 
-      navigateTo({ name: "/login" });
+      navigateTo({ name: config.get("unauthorizedRoutesNames")[0] });
     }
     throw err;
   }

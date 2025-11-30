@@ -3,7 +3,7 @@
     <u-navigation-menu
       :items="layoutModule.menu"
       orientation="vertical"
-      class="max-w-48 w-full pt-8 sticky left-0 top-0 h-[100vh] shrink-0">
+      class="max-w-48 w-full pt-8 sticky left-0 top-0 h-[100vh] shrink-0 menu">
       <template #item="{ item }">
         <div @click="onItemClick(item)" class="w-full h-full text-left">{{ item.label }}</div>
       </template>
@@ -30,3 +30,9 @@ function onItemClick(item: { name?: string }) {
   }
 }
 </script>
+
+<style>
+.menu {
+  background-color: var(--ui-bg);
+}
+</style>

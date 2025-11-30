@@ -28,7 +28,7 @@
     </tbody>
   </table>
   <div class="flex justify-center">
-    <u-button size="xl" :disabled="canBook" :loading="bookingStore.loading.book" @click="tryBooking"
+    <u-button size="xl" :loading="bookingStore.loading.book" @click="tryBooking()"
       >Забронировать</u-button
     >
   </div>
@@ -41,6 +41,7 @@ import { useMovieStore } from "~/entities/movie";
 import { useSessionStore, type TSessionItemSeat } from "~/entities/session";
 import { useUserStore } from "~/entities/user";
 import { useSessionModule } from "~/features/session";
+import { useConfig } from "~/shared";
 
 const sessionModule = useSessionModule();
 const sessionStore = useSessionStore();
@@ -66,7 +67,14 @@ const toBook = reactive<Record<string, boolean>>({});
 const canBook = computed(() => !Object.values(toBook).find((item) => item));
 const userStore = useUserStore();
 
+const toast = useToast();
 function tryToBook(seat: TSessionItemSeat) {
+  if (!userStore.isAuth) {
+    toast.add({
+      title: "Для бронирования билетов необходимо авторизоваться",
+      color: "warning",
+    });
+  }
   if (userStore.isAuth && !seat.isBooked) {
     if (toBook[`${seat.row}:${seat.seat}`]) {
       delete toBook[`${seat.row}:${seat.seat}`];
@@ -77,9 +85,10 @@ function tryToBook(seat: TSessionItemSeat) {
 }
 
 const router = useRouter();
+const config = useConfig();
 async function tryBooking() {
   if (!userStore.isAuth) {
-    return;
+    return router.push({ name: config.get("unauthorizedRoutesNames")[0] });
   }
   const seats = Object.keys(toBook).map((value) => {
     const [row, seat] = value.split(":");
